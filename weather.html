@@ -4,13 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./weather.css">
+    <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
     <title>Document</title>
 </head>
 <body>
-    <p>this is a new paragraph</p>
-    <h1>this is h1</h1>
-    <h2>this is h2</h2>
 
-    <h1>this is heading</h1>
+    <div class="outer">
+           
+    </div>
+
+    
 </body>
+<script>
+ if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);}
+
+  function showPosition(position){
+    let a = position.coords.latitude;
+    let b = position.coords.longitude;
+    console.log(a,b);
+
+    let url = "https://fcc-weather-api.glitch.me/api/current?lat="+ a +"&lon="+ b;
+    fetch(url)
+    .then(resp => resp.json())
+    .then(function(data){
+        console.log(data.weather[0]);
+        console.log(data.weather)
+        console.log(data.main);
+        console.log(data.name);
+        let city = data.name;
+        let curTemp = data.main.temp;
+        let humidity = data.main.humidity; 
+        let descript = data.weather[0].description;
+        let icon = data.weather[0].icon;  
+
+        let c = document.querySelector(".outer");
+        let d = document.createElement("h2");
+        d.classList.add("cityName");
+        let e = document.createElement("h2");
+        e.classList.add("temp");
+        let img = document.createElement("img");
+        img.src = data.weather[0].icon;
+        d.textContent = city;
+        e.textContent = curTemp + " ℃";
+        c.appendChild(d);
+        c.appendChild(img);
+        c.appendChild(e);
+
+    
+
+    })
+
+  }
+  
+ 
+
+</script>
 </html>

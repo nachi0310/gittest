@@ -1,0 +1,21 @@
+*{
+   margin:0;
+   padding:0;
+}
+
+.outer{
+    color: rgb(228, 65, 65);
+    margin-top: 180px;
+    margin-left: 660px;
+    justify-content:center;
+    font-weight: normal;
+    font-size: 30px;
+
+}
+
+body{
+
+  background: url("https://images.pexels.com/photos/1190897/pexels-photo-1190897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat center center fixed;
+    
+}
+
