@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./bitcoin.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+</head>
+<body>
+    <h2>A simple cryptocurrency price generator</h2>
+     <div class = "outer">
+        <button class = "first"><i class="fab fa-bitcoin"></i>Bitcoin</button>
+        <button class = "second"><i class="fab fa-ethereum"></i>Ethereum</button>
+        <button class = "third">Litecoin</button>
+     </div>
+     
+     <div class = "display">
+         
+     </div>
+</body>
+<script>
+    let url = "https://api.coinmarketcap.com/v2/ticker/?convert=INR&limit=10";
+    fetch(url)
+    .then((resp) => resp.json())
+    .then(function(data){
+        console.log(data.data);
+
+        let a = document.createElement("h3");
+        let f = document.createElement("h3");
+        let b = document.querySelector(".first");
+        let d = document.querySelector(".second");
+        let e = document.querySelector(".third");
+        let c = document.querySelector(".display");
+
+        b.addEventListener("click", function() {
+                a.textContent = "";
+                a.textContent = " INR " +data.data[1].quotes.INR.price ;
+                c.appendChild(a);
+                f.textContent = "";
+                f.textContent = " USD " + data.data[1].quotes.USD.price;
+                c.appendChild(f);
+        });
+        
+        d.addEventListener("click", function() {
+                a.textContent = "";
+                a.textContent = " INR " + data.data[1027].quotes.INR.price;
+                c.appendChild(a);
+                f.textContent = "";
+                f.textContent = " USD " + data.data[1027].quotes.USD.price;
+                c.appendChild(f);
+        });  
+
+        e.addEventListener("click", function(){
+                console.log("cis pressed");
+                a.textContent = "";
+                a.textContent = " INR " + data.data[2].quotes.INR.price;
+                c.appendChild(a);
+                f.textContent = "";
+                f.textContent = " USD " + data.data[2].quotes.USD.price;
+                c.appendChild(f);
+            })
+    
+    })
+</script>
+</html>
